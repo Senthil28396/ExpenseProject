@@ -2,11 +2,15 @@ package com.training.expense.model;
 
 import java.util.ArrayList;
 
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 @Entity
 public class Category {
@@ -20,15 +24,21 @@ public class Category {
 	@Column(name="name")
 	private String name;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="transaction_id")
+	private Transaction transaction;
+	
 	public Category() {
 		super();
 	}
-
-	public Category(int id, String name) {
+	
+	public Category(int id, String name, com.training.expense.model.Transaction transaction) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.transaction = transaction;
 	}
+
 
 	public int getId() {
 		return id;
@@ -45,5 +55,14 @@ public class Category {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
+	public Transaction getTransaction() {
+		return transaction;
+	}
+
+
+	public void setTransaction(Transaction transaction) {
+		this.transaction = transaction;
+	}
+
 }

@@ -1,11 +1,15 @@
 package com.training.expense.model;
 
 
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 @Entity
@@ -24,18 +28,21 @@ public class PaymentMode {
 	@Column(name="initial_amount")
 	private double initial_amount;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="transaction_id")
+	private Transaction transaction;
+	
 	public PaymentMode() {
 		super();
 	}
 
-	public PaymentMode(int id, String mode, double initial_amount) {
+	public PaymentMode(int id, String mode, double initial_amount, com.training.expense.model.Transaction transaction) {
 		super();
 		this.id = id;
 		this.mode = mode;
 		this.initial_amount = initial_amount;
+		this.transaction = transaction;
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -59,6 +66,14 @@ public class PaymentMode {
 
 	public void setInitial_amount(double initial_amount) {
 		this.initial_amount = initial_amount;
+	}
+
+	public Transaction getTransaction() {
+		return transaction;
+	}
+
+	public void setTransaction(Transaction transaction) {
+		this.transaction = transaction;
 	}
 	
 	
