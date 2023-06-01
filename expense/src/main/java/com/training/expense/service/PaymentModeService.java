@@ -16,7 +16,16 @@ public class PaymentModeService {
 	PaymentModeRepository paymentRepository;
 
 	public void addAccount(PaymentMode account) {
-		paymentRepository.save(account);
+		Optional<PaymentMode> type=paymentRepository.findById(account.getId());
+		if(type.isPresent()) {
+			PaymentMode newPayement = type.get();
+			newPayement.setId(account.getId());
+			newPayement.setMode(account.getMode());
+			paymentRepository.save(newPayement);
+		}
+		else {
+			paymentRepository.save(account);
+		}
 	}
 
 	public List<PaymentMode> getAccount() {

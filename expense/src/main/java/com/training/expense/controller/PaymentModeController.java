@@ -28,6 +28,7 @@ public class PaymentModeController {
 	
 	@PostMapping
 	public String addAccount(@RequestBody PaymentMode acconut) {
+		
 		paymentModeService.addAccount(acconut);
 		return "created";
 	}
