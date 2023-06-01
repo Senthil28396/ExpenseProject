@@ -24,21 +24,19 @@ public class Category {
 	@Column(name="name")
 	private String name;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="transaction_id")
+	@OneToOne(mappedBy = "category")
 	private Transaction transaction;
 	
 	public Category() {
 		super();
 	}
 	
-	public Category(int id, String name, com.training.expense.model.Transaction transaction) {
+	public Category(int id, String name, Transaction transaction) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.transaction = transaction;
 	}
-
 
 	public int getId() {
 		return id;

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.training.expense.model.Category;
 import com.training.expense.model.Transaction;
 import com.training.expense.service.TransactionService;
 
@@ -33,8 +34,8 @@ public class TransactionController {
 	
 	@GetMapping
 	public ResponseEntity <List<Transaction>> getTransaction() {
-		List<Transaction> categories=trasactionService.getCategory();
-		return new ResponseEntity <List<Transaction>>(categories,new HttpHeaders(),HttpStatus.OK);
+		List<Transaction> transactions=trasactionService.getTransaction();
+		return new ResponseEntity <List<Transaction>>(transactions,new HttpHeaders(),HttpStatus.OK);
 	}
 }
 

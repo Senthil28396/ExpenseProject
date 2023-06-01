@@ -14,8 +14,17 @@ public class CategoryService {
 	@Autowired
 	CategoryRepository categoryRepository;
 	
-	public void addCategory(Category category) {
+	public void addCategory(Category category) throws CategoryNotFoundException {
+		Optional<Category> type=categoryRepository.findByName(category.getName());
+		if(type.isPresent()) {
+			Category newCategory = type.get();
+			newCategory.setId(newCategory.getId());
+			newCategory.setName(category.getName());
+			categoryRepository.save(newCategory);
+		}
+		else {
 		 categoryRepository.save(category);
+		}
 	}
 
 	public List<Category> getCategory() {
