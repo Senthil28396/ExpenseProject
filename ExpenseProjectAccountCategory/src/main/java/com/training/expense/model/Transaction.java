@@ -40,13 +40,13 @@ public class Transaction {
 	private String detail;
 	
 	//@JsonIgnoreProperties
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade= {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
 	@JoinColumn(name="category")
 	//@MapsId
 	private Category category;
 	
 	//@JsonIgnoreProperties
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade= {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
 	@JoinColumn(name="payment")
 	//@MapsId
 	private PaymentMode paymentMode;

@@ -27,28 +27,7 @@ PaymentModeRepository paymentrepository;
 CategoryRepository categoryrepository;
 
 	public void addTransaction(Transaction transaction) {
-		
-		/*
-		 * PaymentMode s=transaction.getPaymentMode(); //System.out.println(s); String
-		 * l=s.getMode(); //double
-		 * initial_amount=transaction.getPaymentMode().getInitial_amount(); long
-		 * amount=transaction.getAmount(); String detail=transaction.getDetail();
-		 * 
-		 * PaymentMode list=(PaymentMode) paymentrepository.findByMode(l);
-		 * System.out.println(list.getInitial_amount()); double
-		 * initial_amount=list.getInitial_amount(); //transaction.getDate();
-		 * 
-		 * //PaymentMode p=new PaymentMode();
-		 * 
-		 * int current_balance=0; if(detail.equals("income")) { current_balance=(int)
-		 * (amount+initial_amount); //list.setId(list.getId()); //list.setMode(l);
-		 * list.setInitial_amount(current_balance); paymentrepository.save(list); } else
-		 * if(detail.equals("expense")) { if(initial_amount>=amount) {
-		 * current_balance=(int) (initial_amount-amount); //list.setId(list.getId());
-		 * //list.setMode(l); list.setInitial_amount(current_balance);
-		 * paymentrepository.save(list); } else {
-		 * System.out.println("insufficient fund"); } }
-		 */        
+		  
 		if (transaction.getDetail().equalsIgnoreCase("expense")) {
 	        Optional<PaymentMode> type = paymentrepository.findByMode(transaction.getPaymentMode().getMode());
 	        if (type.isPresent()) {
@@ -74,17 +53,13 @@ CategoryRepository categoryrepository;
 	Category category = categoryrepository.findByName(transaction.getCategory().getName())
 			.orElseGet(() -> categoryrepository.save(transaction.getCategory()));
 
-    // Assign the existing or newly created category to the transaction
     transaction.setCategory(category);
 
-    // Retrieve existing payment mode from the database or create a new one if necessary
     PaymentMode paymentMode = paymentrepository.findByMode(transaction.getPaymentMode().getMode())
             .orElseGet(() -> paymentrepository.save(transaction.getPaymentMode()));
 
-    // Assign the existing or newly created payment mode to the transaction
     transaction.setPaymentMode(paymentMode);
 
-    // Save the transaction
     transactionrepository.save(transaction);
 }
 
@@ -107,23 +82,17 @@ CategoryRepository categoryrepository;
 			Category category = categoryrepository.findByName(transaction.getCategory().getName())
 					.orElseGet(() -> categoryrepository.save(transaction.getCategory()));
 
-		    // Assign the existing or newly created category to the transaction
 		    transaction.setCategory(category);
 
-		    // Retrieve existing payment mode from the database or create a new one if necessary
 		    PaymentMode paymentMode = paymentrepository.findByMode(transaction.getPaymentMode().getMode())
 		            .orElseGet(() -> paymentrepository.save(transaction.getPaymentMode()));
 
-		    // Assign the existing or newly created payment mode to the transaction
-		    transaction.setPaymentMode(paymentMode);
+		    		    transaction.setPaymentMode(paymentMode);
 
 		    transactionDetail.setCategory(transaction.getCategory());
 			  transactionDetail.setPaymentMode(transaction.getPaymentMode());
 
 			transactionrepository.save(transactionDetail);
-
-		    // Save the transaction
-		    //transactionrepository.save(transaction);
 
 		}
 		else
@@ -133,11 +102,26 @@ CategoryRepository categoryrepository;
 	}
 
 	public void deleteTransaction(int id) {
-		Optional<Transaction> t=transactionrepository.findById(id);
-		if(t.isPresent())
+		Optional<Transaction> transaction=transactionrepository.findById(id);
+		if(transaction.isPresent())
 		{
-//			Transaction trans=t.get();
-//			trans.getAmount()
+			Transaction trans=transaction.get();
+			long amount=trans.getAmount();
+			String detail=trans.getDetail();
+			PaymentMode mode=trans.getPaymentMode();
+			double oldBalance=mode.getInitial_amount();
+			if(detail.equals("expense"))
+			{
+				double initial_amount=oldBalance+amount;
+				mode.setInitial_amount(initial_amount);
+				paymentrepository.save(mode);
+			}
+			else
+			{
+				double initial_amount=oldBalance-amount;
+				mode.setInitial_amount(initial_amount);
+				paymentrepository.save(mode);
+			}
 			transactionrepository.deleteById(id);
 		}
 		else
