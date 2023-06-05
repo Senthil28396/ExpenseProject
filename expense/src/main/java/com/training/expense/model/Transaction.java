@@ -18,6 +18,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "transaction")
+
 public class Transaction {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transaction_generator")
