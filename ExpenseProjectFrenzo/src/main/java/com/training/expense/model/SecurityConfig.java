@@ -1,13 +1,11 @@
-package com.spring.expense.ExpenseProject.model;
+package com.training.expense.model;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.RequestMatcher;
 
 
 @Configuration
@@ -20,6 +18,12 @@ public class SecurityConfig {
 		.requestMatchers("/users/{id}").permitAll()
 		.requestMatchers("/forgot-password").permitAll()
 		.requestMatchers("/reset-password").permitAll()
+		.requestMatchers("/categories").permitAll()
+		.requestMatchers("/categories/{id}").permitAll()
+		.requestMatchers("/paymentmode").permitAll()
+		.requestMatchers("/paymentmode/{id}").permitAll()
+		.requestMatchers("/transaction").permitAll()
+		.requestMatchers("/transaction/{id}").permitAll()
 		.requestMatchers("/swagger-ui/**","/v3/api-docs/**").permitAll();
 		http.formLogin();
 		http.httpBasic();

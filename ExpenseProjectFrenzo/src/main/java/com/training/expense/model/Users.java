@@ -1,4 +1,4 @@
-package com.spring.expense.ExpenseProject.model;
+package com.training.expense.model;
 
 import java.time.LocalDateTime;
 
@@ -51,6 +51,7 @@ public class Users {
 		this.userId = userId;
 	}
 
+	
 	public String getUserName() {
 		return userName;
 	}

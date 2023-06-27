@@ -1,13 +1,13 @@
-package com.spring.expense.ExpenseProject;
+package com.training.expense;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ExpenseProjectApplication {
+public class ExpenseApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ExpenseProjectApplication.class, args);
+		SpringApplication.run(ExpenseApplication.class, args);
 	}
 
 }

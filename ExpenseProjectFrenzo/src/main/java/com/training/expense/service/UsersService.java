@@ -1,34 +1,37 @@
-package com.spring.expense.ExpenseProject.service;
+package com.training.expense.service;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
+	import java.time.Duration;
+	import java.time.LocalDateTime;
+	import java.util.ArrayList;
+	import java.util.List;
+	import java.util.Optional;
+	import java.util.UUID;
 
-import com.spring.expense.ExpenseProject.model.UserNotFoundException;
-import com.spring.expense.ExpenseProject.model.Users;
-import com.spring.expense.ExpenseProject.repository.UserRepository;
+	import org.springframework.beans.factory.annotation.Autowired;
+	import org.springframework.security.core.GrantedAuthority;
+	import org.springframework.security.core.authority.SimpleGrantedAuthority;
+	import org.springframework.security.core.userdetails.User;
+	import org.springframework.security.core.userdetails.UserDetails;
+	import org.springframework.security.core.userdetails.UserDetailsService;
+	import org.springframework.security.core.userdetails.UsernameNotFoundException;
+	import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+	import org.springframework.security.crypto.password.PasswordEncoder;
+	import org.springframework.stereotype.Service;
+
+import com.training.expense.model.UserNotFoundException;
+import com.training.expense.model.Users;
+import com.training.expense.repository.UsersRepository;
+
+	
 
 @Service
-public class UserService implements UserDetailsService 
+public class UsersService implements UserDetailsService 
 {
 	private static final long EXPIRE_TOKEN_AFTER_MINUTES = 30;
 
 	@Autowired
-	private UserRepository usersrepository;
+	private UsersRepository usersrepository;
 	
 	@Autowired
 	public PasswordEncoder passwordencoder;

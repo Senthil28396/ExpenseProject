@@ -1,4 +1,4 @@
-package com.spring.expense.ExpenseProject.repository;
+package com.training.expense.repository;
 
 import java.text.Normalizer.Form;
 import java.util.List;
@@ -9,11 +9,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.spring.expense.ExpenseProject.model.Users;
-
+import com.training.expense.model.Users;
 
 @Repository
-public interface UserRepository extends CrudRepository<Users, Integer> {
+public interface UsersRepository extends CrudRepository<Users, Integer> {
 	
     List<Users> findByEmail(String email);
 

@@ -1,5 +1,4 @@
-
-package com.spring.expense.ExpenseProject.model;
+package com.training.expense.model;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -11,5 +10,4 @@ public class UserNotFoundException extends RuntimeException {
 	public UserNotFoundException(String exception) {
 		super(exception);
 	}
-
 }
