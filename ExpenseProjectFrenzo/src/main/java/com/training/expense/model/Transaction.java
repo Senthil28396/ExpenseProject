@@ -35,13 +35,13 @@ public class Transaction {
 	
 	private String detail;
 	
-	@JsonIgnore
-	@OneToOne(cascade= {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.DETACH},fetch = FetchType.LAZY,orphanRemoval = true)
+	//@JsonIgnore
+	@OneToOne(cascade= {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.DETACH},orphanRemoval = true)
 	@JoinColumn(name="category")
 	private Category category;
 	
-	@JsonIgnore
-	@OneToOne(cascade= {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.DETACH},fetch = FetchType.LAZY,orphanRemoval = true)
+	//@JsonIgnore
+	@OneToOne(cascade= {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.DETACH},orphanRemoval = true)
 	@JoinColumn(name="payment")
 	private PaymentMode paymentMode;
 	
@@ -91,12 +91,12 @@ public class Transaction {
 	}
 
 	public void setCategory(Category category) {
-		if (this.category != null) {
-            this.category.setTransaction(null);
-        }
+//		if (this.category != null) {
+//            this.category.setTransaction(null);
+//        }
 
         this.category = category;
-        category.setTransaction(this);
+        //category.setTransaction(this);
     }
 
 	
@@ -114,12 +114,12 @@ public class Transaction {
 	}
     
 	public void setPaymentMode(PaymentMode paymentMode) {
-		if (this.paymentMode != null) {
-            this.paymentMode.setTransaction(null);
-        }
+//		if (this.paymentMode != null) {
+//            this.paymentMode.setTransaction(null);
+//        }
 
         this.paymentMode = paymentMode;
-        paymentMode.setTransaction(this);
+      //  paymentMode.setTransaction(this);
     }
 
 	public Date getDate() {

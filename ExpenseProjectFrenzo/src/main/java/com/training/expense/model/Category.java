@@ -24,18 +24,18 @@ public class Category {
 	@Column(name="name")
 	private String name;
 
-	@OneToOne(mappedBy = "category")
-	private Transaction transaction;
+	//@OneToOne(mappedBy = "category")
+	//private Transaction transaction;
 	
 	public Category() {
 		super();
 	}
 	
-	public Category(int id, String name, Transaction transaction) {
+	public Category(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.transaction = transaction;
+		//this.transaction = transaction;
 	}
 
 	public int getId() {
@@ -52,15 +52,6 @@ public class Category {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Transaction getTransaction() {
-		return transaction;
-	}
-
-
-	public void setTransaction(Transaction transaction) {
-		this.transaction = transaction;
 	}
 
 }

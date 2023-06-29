@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.training.expense.model.Category;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category,Integer> {
-
 	Optional<Category> findByName(String name);
 
 }
